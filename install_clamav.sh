@@ -37,8 +37,8 @@ sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/clamd.conf
 freshclam -v
 
 # setup to a quarantine location
-sudo mkdir /Users/Shared/Quarantine
-sudo clamscan -r — scan-pdf=yes -l /Users/Shared/Quarantine/Quarantine.txt — move=/Users/Shared/Quarantine/ /
+sudo mkdir -p /Users/Shared/Quarantine
+#sudo clamscan -r — scan-pdf=yes -l /Users/Shared/Quarantine/Quarantine.txt — move=/Users/Shared/Quarantine/ /
 
 # use an Extension Attribute to read the Quarantine.txt file
 #Read Quarantine
@@ -47,10 +47,8 @@ result=$(cat /Users/Shared/Quarantine/Quarantine.txt)
 echo "<result>$result</result>"
 
 # create a plist that automatically runs on-demand clamdscan on a schedule
-cd /tmp && curl https://raw.githubusercontent.com/essandess/macOS-clamAV/master/org.macports.clamdscan.plist
-mv ./org.macports.clamdscan.plist ./org.hombrew.clamdscan.plist
-sudo install -m 644 ./org.macports.clamdscan.plist /Library/LaunchDaemons
-sudo launchctl load -w /Library/LaunchDaemons/org.hombrew.clamdscan.plist
+sudo install -m 644 ./net.clamav.clamdscan.plist /Library/LaunchDaemons
+sudo launchctl load -w /Library/LaunchDaemons/net.clamav.clamdscan.plist
 
 ### Related sources
 # https://github.com/essandess/macOS-clamAV
