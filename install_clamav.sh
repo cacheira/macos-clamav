@@ -16,12 +16,14 @@ fi
 # install homebrew
 if ! [ -x $BREW ]
 then
-    $OPEN -a Safari https://brew.sh/
-    $CAT <<HOMEBREW
-Please download and install Homebrew from https://brew.sh/
-then run this script again.
-HOMEBREW
-    exit 1
+    echo "Do you want to install Homebrew from https://brew.sh (y/n)"
+    read answer
+    if $answer == "y"
+    then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    else
+        exit 1
+    fi
 fi
 
 # simply brew with the install verb and clamav as the recipe to be brewed:
