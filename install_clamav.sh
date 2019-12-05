@@ -32,6 +32,7 @@ brew install clamav
 # create your configuration files
 cp /usr/local/etc/clamav/freshclam.conf.sample /usr/local/etc/clamav/freshclam.conf && \
 sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/freshclam.conf
+sed -ie 's/^LocalSocket /tmp/clamd.socket/#LocalSocket /tmp/clamd.socket/g' /usr/local/etc/clamav/freshclam.conf
 cp /usr/local/etc/clamav/clamd.conf.sample /usr/local/etc/clamav/clamd.conf && \
 sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/clamd.conf
 
