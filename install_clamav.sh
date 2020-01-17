@@ -30,11 +30,14 @@ fi
 brew install clamav
 
 # create your configuration files
-cp /usr/local/etc/clamav/freshclam.conf.sample /usr/local/etc/clamav/freshclam.conf && \
-sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/freshclam.conf
-sed -ie 's/^LocalSocket /tmp/clamd.socket/#LocalSocket /tmp/clamd.socket/g' /usr/local/etc/clamav/freshclam.conf
-cp /usr/local/etc/clamav/clamd.conf.sample /usr/local/etc/clamav/clamd.conf && \
-sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/clamd.conf
+#cp /usr/local/etc/clamav/freshclam.conf.sample /usr/local/etc/clamav/freshclam.conf && \
+#sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/freshclam.conf
+#sed -ie 's/^LocalSocket /tmp/clamd.socket/#LocalSocket /tmp/clamd.socket/g' /usr/local/etc/clamav/freshclam.conf
+#cp /usr/local/etc/clamav/clamd.conf.sample /usr/local/etc/clamav/clamd.conf && \
+#sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/clamd.conf
+cp ./freshclam.conf /usr/local/etc/clamav/freshclam.conf
+cp ./clamd.conf /usr/local/etc/clamav/clamd.conf
+cp ./clamd.conf /usr/local/etc/clamav/clamd.conf
 
 # update the virus definitions for clamav
 freshclam -v
@@ -45,13 +48,13 @@ sudo mkdir -p /Users/Shared/Quarantine
 
 # use an Extension Attribute to read the Quarantine.txt file
 #Read Quarantine
-result=$(cat /Users/Shared/Quarantine/Quarantine.txt)
+#result=$(cat /Users/Shared/Quarantine/Quarantine.txt)
 #Echo Quarantine into EA
-echo "<result>$result</result>"
+#echo "<result>$result</result>"
 
 # create a plist that automatically runs on-demand clamdscan on a schedule
-sudo install -m 644 ./net.clamav.clamdscan.plist /Library/LaunchDaemons
-sudo launchctl load -w /Library/LaunchDaemons/net.clamav.clamdscan.plist
+#sudo install -m 644 ./net.clamav.clamdscan.plist /Library/LaunchDaemons
+#sudo launchctl load -w /Library/LaunchDaemons/net.clamav.clamdscan.plist
 
 ### Related sources
 # https://github.com/essandess/macOS-clamAV

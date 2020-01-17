@@ -8,25 +8,12 @@
 	<string>/bin/bash</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/bin/bash</string>
- 		<string>-c</string>
-	<string>SCAN_TARGETS=(&quot;/&quot;) CLAMDSCAN_QUARANTINE=/Users/Shared/Quarantine CLAMDSCAN_LOG=/usr/local/var/log/clamav/clamdscan.log ; /usr/local/bin/clamdscan --reload  &amp;&amp; ( /bin/test -d $CLAMDSCAN_QUARANTINE || /bin/mkdir -p $CLAMDSCAN_QUARANTINE ) &amp;&amp; ( /bin/test -d ${CLAMDSCAN_LOG%/*} || /bin/mkdir -p ${CLAMDSCAN_LOG%/*} ) &amp;&amp; echo &quot;Launch daemon net.clamav.clamdscan started on `/bin/date` …&quot; &gt;&gt; $CLAMDSCAN_LOG &amp;&amp; ( /usr/local/bin/clamdscan --multiscan --quiet --fdpass --move=$CLAMDSCAN_QUARANTINE --log=$CLAMDSCAN_LOG &quot;${SCAN_TARGETS[@]}&quot; &amp;&amp; echo &quot;Launch daemon net.clamav.clamdscan completed on `/bin/date`.&quot; &gt;&gt; $CLAMDSCAN_LOG || echo &quot;Launch daemon net.clamav.clamdscan exited with error code $? on `/bin/date`.&quot; &gt;&gt; $CLAMDSCAN_LOG ) </string>
-	</array>
+		<string>/usr/local/sbin/clamd</string>
+ 	</array>
         <key>RunAtLoad</key>
-        <false/>
+        <true/>
         <key>Nice</key>
         <integer>15</integer>
-        <key>StartCalendarInterval</key>
-        <array>
-                <dict>
-                        <key>Weekday</key>
-                        <integer>7</integer>
-                        <key>Hour</key>
-                        <integer>2</integer>
-                        <key>Minute</key>
-                        <integer>00</integer>
-                </dict>
-        </array>
 	<key>StandardErrorPath</key>
 	<string>/var/log/system.log</string>
 	<key>StandardOutPath</key>
