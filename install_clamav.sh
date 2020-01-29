@@ -37,7 +37,6 @@ brew install clamav
 #sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/clamd.conf
 cp ./freshclam.conf /usr/local/etc/clamav/freshclam.conf
 cp ./clamd.conf /usr/local/etc/clamav/clamd.conf
-cp ./clamd.conf /usr/local/etc/clamav/clamd.conf
 
 # update the virus definitions for clamav
 freshclam -v
