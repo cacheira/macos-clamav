@@ -5,7 +5,7 @@ BREW=/usr/local/bin/brew
 
 # prerequisites
 # install macos command line tools
-CLT_DIR=`xcode-select -p`
+CLT_DIR=$(xcode-select -p)
 RV=$?
 if ! [ $RV -eq '0' ]
 then
@@ -17,8 +17,8 @@ fi
 if ! [ -x $BREW ]
 then
     echo "Do you want to install Homebrew from https://brew.sh (y/n)"
-    read answer
-    if $answer == "y"
+    read -r answer
+    if [ "${answer}" == "y" ]
     then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     else
@@ -36,7 +36,6 @@ brew install clamav
 #cp /usr/local/etc/clamav/clamd.conf.sample /usr/local/etc/clamav/clamd.conf && \
 #sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/clamd.conf
 cp ./freshclam.conf /usr/local/etc/clamav/freshclam.conf
-cp ./clamd.conf /usr/local/etc/clamav/clamd.conf
 cp ./clamd.conf /usr/local/etc/clamav/clamd.conf
 
 # update the virus definitions for clamav
