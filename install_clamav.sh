@@ -29,6 +29,11 @@ fi
 # simply brew with the install verb and clamav as the recipe to be brewed:
 brew install clamav
 
+# check and fix freshclam and clamd symlinks
+CLAMAV_PREFIX=$(clamav-config --prefix)
+test -f /usr/local/bin/freshclam || ln -s "${CLAMAV_PREFIX}"/bin/freshclam /usr/local/bin/freshclam
+test -f /usr/local/bin/clamd || ln -s "${CLAMAV_PREFIX}"/sbin/clamd /usr/local/bin/clamd
+
 # create your configuration files
 #cp /usr/local/etc/clamav/freshclam.conf.sample /usr/local/etc/clamav/freshclam.conf && \
 #sed -ie 's/^Example/#Example/g' /usr/local/etc/clamav/freshclam.conf
